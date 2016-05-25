@@ -1,0 +1,26 @@
+name       : libindicator
+version    : 12.10.1
+release    : 1
+source     :
+    - https://launchpad.net/libindicator/12.10/12.10.1/+download/libindicator-12.10.1.tar.gz : b2d2e44c10313d5c9cd60db455d520f80b36dc39562df079a3f29495e8f9447f
+license    : GPL-3.0
+component  : programming.library
+summary    : Indicator Library
+description: |
+    A set of symbols and convience functions that all indicators would like to use.
+builddeps  :
+    - pkgconfig32(gio-unix-2.0)
+    - pkgconfig(gtk+-2.0)
+    - pkgconfig32(gtk+-2.0)
+    - pkgconfig32(atk)
+    - pkgconfig32(xshmfence)
+    - glibc-32bit-devel
+    - libgcc-32bit
+    - libstdc++-32bit
+emul32     : yes
+setup      : |
+    %configure --disable-static --prefix=/usr --with-gtk=2
+build      : |
+    %make
+install    : |
+    %make_install

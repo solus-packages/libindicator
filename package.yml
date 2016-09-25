@@ -1,6 +1,6 @@
 name       : libindicator
 version    : 12.10.1
-release    : 2
+release    : 3
 source     :
     - https://launchpad.net/libindicator/12.10/12.10.1/+download/libindicator-12.10.1.tar.gz : b2d2e44c10313d5c9cd60db455d520f80b36dc39562df079a3f29495e8f9447f
 license    : GPL-3.0
@@ -23,13 +23,13 @@ setup      : |
     mkdir b2
     mkdir b3
     pushd b2
-    ../configure --disable-static --prefix=/usr --with-gtk=2 %CONFOPTS%
+    ../configure --disable-static --with-gtk=2 %CONFOPTS% --prefix=/usr
     popd
     pushd b3
-    ../configure --disable-static --prefix=/usr --with-gtk=3 %CONFOPTS%
+    ../configure --disable-static --with-gtk=3 %CONFOPTS% --prefix=/usr
 build      : |
     (pushd b2; %make)
     (pushd b3; %make)
 install    : |
-    (pushd b2; %make_install)
-    (pushd b3; %make_install)
+    (pushd b2; %make_install -j1)
+    (pushd b3; %make_install -j1)
